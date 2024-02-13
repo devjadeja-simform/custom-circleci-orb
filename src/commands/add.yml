@@ -1,0 +1,16 @@
+description: >
+  Add two numbers provides as integer params.
+parameters:
+  numA:
+    type: integer
+    description: "The first number"
+  numb:
+    type: integer
+    description: "The second number"
+steps:
+  - run:
+      environment:
+        PARAM_NUMA: <<parameters.numA>>
+        PARAM_NUMb: <<parameters.numB>>
+      name: Adding <<parameters.numA>> + <<parameters.numB>>
+      command: <<include(scripts/add.sh)>>
