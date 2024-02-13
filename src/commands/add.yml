@@ -3,9 +3,11 @@ description: >
 parameters:
   numA:
     type: integer
+    default: 4
     description: "The first number"
   numB:
     type: integer
+    default: 3
     description: "The second number"
 steps:
   - run:
