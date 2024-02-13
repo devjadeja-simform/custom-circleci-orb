@@ -4,7 +4,7 @@ parameters:
   numA:
     type: integer
     description: "The first number"
-  numb:
+  numB:
     type: integer
     description: "The second number"
 steps:
