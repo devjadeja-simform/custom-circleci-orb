@@ -37,3 +37,9 @@ We welcome [issues](https://github.com/devjadeja-simform/custom-circleci-orb/iss
 5. Now ensure the version tag selected is semantically accurate based on the changes included.
 6. Click _"Publish Release"_.
     - This will push a new tag and trigger your publishing pipeline on CircleCI.
+  
+
+### Contributors
+<a href="https://github.com/devjadeja-simform/custom-circleci-orb/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=devjadeja-simform/custom-circleci-orb" />
+</a>
