@@ -20,7 +20,7 @@ steps:
   - run:
       name: Install
       command: |
-        cd << parameters.prj_path >>
+        cd {{ parameters.prj_path }}
         if [[ ! -d node_modules ]]; then yarn install; fi
   - save_cache:
       key: dependency-cache-{{ checksum "yarn.lock" }}-dependency-cache-{{ checksum "package.json" }}
