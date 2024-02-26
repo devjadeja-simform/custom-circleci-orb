@@ -4,11 +4,11 @@ docker:
   - image: cimg/node:<< parameters.node_version >>
 
 parameters:
-  - node_version:
+  node_version:
     type: string
     default: "18"
     description: Select the version of cimg/node
-  - prj_path:
+  prj_path:
     type: string
     default: ./
     description: Project path where package.json lies.
