@@ -20,11 +20,13 @@ steps:
   - checkout
   - attach_workspace:
       at: ~/project
+  - restore_cache:
+      key: dependency-cache-{{ checksum "package.json" }}
   - run:
       name: Build apps
       command: cd << parameters.prj_path >> && yarn build
   - persist_to_workspace:
-      root: ~/project
+      root: ~/project/<< parameters.prj_path >>/
       paths:
         - dist/*
         - build/*

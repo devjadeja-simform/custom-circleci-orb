@@ -16,17 +16,17 @@ parameters:
 steps:
   - checkout
   - restore_cache:
-      key: dependency-cache-{{ checksum "yarn.lock" }}-dependency-cache-{{ checksum "package.json" }}
+      key: dependency-cache-{{ checksum "package.json" }}
   - run:
       name: Install
       command: |
         cd << parameters.prj_path >>;
         if [[ ! -d node_modules ]]; then yarn install; fi
   - save_cache:
-      key: dependency-cache-{{ checksum "yarn.lock" }}-dependency-cache-{{ checksum "package.json" }}
+      key: dependency-cache-{{ checksum "package.json" }}
       paths:
-        - node_modules
+        - << parameters.prj_path >>/node_modules
   - persist_to_workspace:
       root: ~/project
       paths:
-        - node_modules
+        - << parameters.prj_path >>/node_modules
