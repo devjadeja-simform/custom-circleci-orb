@@ -1,0 +1,23 @@
+docker:
+  - image: cimg/node:<< parameters.node_version >>
+
+parameters:
+  node_version:
+    type: string
+    default: "18"
+    description: |
+      Select the version of Node.js to use. Uses CircleCI's highly cached convenience images built for CI.
+      Any available tag from this list can be used: https://hub.docker.com/r/cimg/node/tags
+
+steps:
+  - checkout
+  - attach_workspace:
+      at: ~/project
+  - run:
+      name: Build apps
+      command: yarn build
+  - persist_to_workspace:
+      root: ~/project
+      paths:
+        - dist/*
+        - build/*
