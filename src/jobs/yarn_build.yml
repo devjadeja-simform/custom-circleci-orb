@@ -1,3 +1,6 @@
+description: |
+  This job creates a distributable build of the project from the source code.
+
 docker:
   - image: cimg/node:<< parameters.node_version >>
 
