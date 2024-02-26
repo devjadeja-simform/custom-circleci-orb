@@ -8,6 +8,10 @@ parameters:
     type: string
     default: "18"
     description: Select the version of cimg/node
+  prj_path:
+    type: string
+    default: ./
+    description: Project path where package.json lies.
 
 steps:
   - checkout
@@ -16,6 +20,7 @@ steps:
   - run:
       name: Install
       command: |
+        cd << parameters.prj_path >>
         if [[ ! -d node_modules ]]; then yarn install; fi
   - save_cache:
       key: dependency-cache-{{ checksum "yarn.lock" }}-dependency-cache-{{ checksum "package.json" }}
