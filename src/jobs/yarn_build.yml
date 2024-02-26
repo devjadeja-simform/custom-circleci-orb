@@ -11,6 +11,10 @@ parameters:
     description: |
       Select the version of Node.js to use. Uses CircleCI's highly cached convenience images built for CI.
       Any available tag from this list can be used: https://hub.docker.com/r/cimg/node/tags
+  prj_path:
+    type: string
+    default: ./
+    description: Project path where package.json lies.
 
 steps:
   - checkout
@@ -18,7 +22,7 @@ steps:
       at: ~/project
   - run:
       name: Build apps
-      command: yarn build
+      command: cd << parameters.prj_path >> && yarn build
   - persist_to_workspace:
       root: ~/project
       paths:
