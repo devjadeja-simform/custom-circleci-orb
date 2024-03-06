@@ -1,31 +1,20 @@
 description: |
   This job performs tests (custom, unit, e2e) for the project.
-docker:
-  - image: cimg/node:<< parameters.node_version >>
 
 parameters:
-  node_version:
-    type: string
-    default: "18.18"
-    description: Select the version of cimg/node
   prj_path:
     type: string
     default: "./"
-    description: Project path where package.json lies.
+    description: Project path where 'package.json' lies.
 
 steps:
   - attach_workspace:
       at: ~/project
   - run:
-      name: Unit Test
+      name: Unit Tests
       command: |
         cd "$prj_path"
         yarn test:unit
-  # - run:
-  #     name: E2E Test
-  #     command: |
-  #       cd "$prj_path"
-  #       yarn test:e2e
   - persist_to_workspace:
       root: ~/project/
       paths:

@@ -1,24 +1,19 @@
 description: |
-  This job installs the dependencies packages for the project.
-docker:
-  - image: cimg/node:<< parameters.node_version >>
+  This command installs the dependencies packages for the project.
 
 parameters:
-  node_version:
-    type: string
-    default: "18.18"
-    description: Select the version of cimg/node
   prj_path:
     type: string
     default: "./"
-    description: Project path where package.json lies.
+    description: |
+      Project path where 'package.json' lies.
 
 steps:
   # - checkout
   - attach_workspace:
       at: ~/project
   - run:
-      name: Install
+      name: Installing dependencies
       command: |
         cd "$prj_path"
         if [[ ! -d node_modules ]]; then yarn install; fi

@@ -1,0 +1,40 @@
+description: |
+  This command creates a distributable build of the project from the source code.
+
+parameters:
+  prj_path:
+    type: string
+    default: "./"
+    description: Project path where 'package.json' lies.
+  save_artifacts:
+    type: boolean
+    default: false
+    description: Whether or not to store the zipped distributable build as a job artifact.
+
+steps:
+  - attach_workspace:
+      at: ~/project
+  - run:
+      name: Building
+      command: |
+        cd "$prj_path"
+        yarn build
+  - run:
+      name: Package
+      command: |
+        if [[ -d "dist/" ]]; then zip -r ~/project/dist.zip dist/ ; fi
+        if [[ -d "build/" ]]; then zip -r ~/project/build.zip dist/ ; fi
+  - persist_to_workspace:
+      root: ~/project/<< parameters.prj_path >>/
+      paths:
+        - dist/*
+        - build/*
+  - when:
+      condition: << parameters.save_artifacts >>
+      steps:      
+        - store_artifacts:
+            path: ~/project/dist.zip
+            destination: dist.zip
+        - store_artifacts:
+            path: ~/project/build.zip
+            destination: build.zip
