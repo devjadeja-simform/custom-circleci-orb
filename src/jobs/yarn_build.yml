@@ -24,7 +24,7 @@ steps:
       command: |
         cd "$prj_path"
         yarn build
-  - run: 
+  - run:
       name: Package
       command: |
         if [[ -d "dist/" ]]; then zip -r ~/project/dist.zip dist/ ; fi
@@ -36,6 +36,6 @@ steps:
         - build/*
   - store_artifacts:
       path: ~/project
-      destination: 
+      destination:
         - dist.zip
         - build.zip
