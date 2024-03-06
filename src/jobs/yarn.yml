@@ -34,9 +34,6 @@ docker:
   - image: cimg/node:<< parameters.node_version >>
 
 steps:
-  - run:
-      name: Install yarn
-      command: npm install --location=global yarn
   - checkout
   - attach_workspace:
       at: ~/project
