@@ -10,35 +10,28 @@ parameters:
     description: Select the version of cimg/node
   prj_path:
     type: string
-    default: ""
+    default: "./"
     description: Project path where package.json lies.
 
 steps:
   - attach_workspace:
       at: ~/project
-  - restore_cache:
-      key: dependency-cache-{{ checksum "package.json" }}
   - run:
       name: Test
       command: |
-        if [[ -n "$prj_path" ]]; then cd "$prj_path" fi
+        cd "$prj_path"
         yarn test
   - run:
       name: Unit Test
       command: |
-        if [[ -n "$prj_path" ]]; then cd "$prj_path" fi
+        cd "$prj_path"
         yarn test:unit
   - run:
       name: E2E Test
       command: |
-        if [[ -n "$prj_path" ]]; then cd "$prj_path" fi
+        cd "$prj_path"
         yarn test:e2e
-
-  - save_cache:
-      key: dependency-cache-{{ checksum "package.json" }}
-      paths:
-        - "*"
   - persist_to_workspace:
-      root: ~/project
+      root: ~/project/
       paths:
-        - "*"
+        - << parameters.prj_path >>/*
