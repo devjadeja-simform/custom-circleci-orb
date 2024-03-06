@@ -40,7 +40,7 @@ workflows:
           filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
-          filters: *release-filters
+          filters: *filters
       - orb-tools/publish:
           orb_name: devjadeja-simform/custom-orb
           vcs_type: << pipeline.project.type >>
@@ -56,6 +56,7 @@ workflows:
           orb_name: devjadeja-simform/custom-orb
           vcs_type: << pipeline.project.type >>
           pub_type: dev
+
           # Ensure this job requires all test jobs and the pack job.
           requires:
             - orb-tools/pack
