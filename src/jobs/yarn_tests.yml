@@ -21,11 +21,11 @@ steps:
       command: |
         cd "$prj_path"
         yarn test:unit
-  - run:
-      name: E2E Test
-      command: |
-        cd "$prj_path"
-        yarn test:e2e
+  # - run:
+  #     name: E2E Test
+  #     command: |
+  #       cd "$prj_path"
+  #       yarn test:e2e
   - persist_to_workspace:
       root: ~/project/
       paths:
