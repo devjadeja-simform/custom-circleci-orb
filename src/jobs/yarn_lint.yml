@@ -1,5 +1,5 @@
 description: |
-  This job installs the dependencies packages for the project.
+  This job performs linting for the project.
 docker:
   - image: cimg/node:<< parameters.node_version >>
 
@@ -14,21 +14,13 @@ parameters:
     description: Project path where package.json lies.
 
 steps:
-  # - checkout
   - attach_workspace:
       at: ~/project
   - restore_cache:
       key: dependency-cache-{{ checksum "package.json" }}
   - run:
-      name: Install
+      name: Lint
       command: |
         if [[ -n "$prj_path" ]]; then cd "$prj_path" fi
-        if [[ ! -d node_modules ]]; then yarn install; fi
-  - save_cache:
-      key: dependency-cache-{{ checksum "package.json" }}
-      paths:
-        - << parameters.prj_path >>node_modules
-  - persist_to_workspace:
-      root: ~/project
-      paths:
-        - << parameters.prj_path >>node_modules
+        yarn lint
+  

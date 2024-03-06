@@ -7,26 +7,27 @@ docker:
 parameters:
   node_version:
     type: string
-    default: "18"
+    default: "18.18"
     description: |
       Select the version of Node.js to use. Uses CircleCI's highly cached convenience images built for CI.
       Any available tag from this list can be used: https://hub.docker.com/r/cimg/node/tags
   prj_path:
     type: string
-    default: ./
+    default: ""
     description: Project path where package.json lies.
 
 steps:
-  - checkout
   - attach_workspace:
       at: ~/project
   - restore_cache:
       key: dependency-cache-{{ checksum "package.json" }}
   - run:
       name: Build apps
-      command: cd << parameters.prj_path >> && yarn build
+      command: |
+        if [[ -n "$prj_path" ]]; then cd "$prj_path" fi
+        yarn build
   - persist_to_workspace:
-      root: ~/project/<< parameters.prj_path >>/
+      root: ~/project/<< parameters.prj_path >>
       paths:
         - dist/*
         - build/*
