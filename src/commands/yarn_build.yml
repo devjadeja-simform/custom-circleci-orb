@@ -31,7 +31,7 @@ steps:
         - build/*
   - when:
       condition: << parameters.save_artifacts >>
-      steps:      
+      steps:
         - store_artifacts:
             path: ~/project/dist.zip
             destination: dist.zip

@@ -12,7 +12,7 @@ parameters:
     default: ""
     description: |
       Additional command/script to execute with yarn.
-      e.g.: yarn 'test:e2e' 
+      e.g.: yarn 'test:e2e'
 
 
 steps:
@@ -24,7 +24,7 @@ steps:
       command: |
         cd "$prj_path"
         if [[ ! -d node_modules ]]; then yarn install; fi
-  - run:  
+  - run:
       name: yarn << parameters.script_command >>
       command: yarn << parameters.script_command >>
   - persist_to_workspace:

@@ -1,5 +1,5 @@
 description: >
-  This command performs the yarn operations. (i.e.: install, build, lint, test) 
+  This command performs the yarn operations. (i.e.: install, build, lint, test)
 parameters:
   node_version:
     type: string
@@ -18,7 +18,7 @@ parameters:
     description: |
       Whether or not to create a distributable build from the source code.
       Can be set to true based on conditions.
-  save_artifacts: 
+  save_artifacts:
     type: boolean
     default: false
     description: |
@@ -34,7 +34,7 @@ docker:
   - image: cimg/node:<< parameters.node_version >>
 
 steps:
-  - run: 
+  - run:
       name: Install yarn
       command: npm install --location=global yarn
   - checkout
