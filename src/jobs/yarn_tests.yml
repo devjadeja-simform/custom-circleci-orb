@@ -17,11 +17,6 @@ steps:
   - attach_workspace:
       at: ~/project
   - run:
-      name: Test
-      command: |
-        cd "$prj_path"
-        yarn test
-  - run:
       name: Unit Test
       command: |
         cd "$prj_path"
