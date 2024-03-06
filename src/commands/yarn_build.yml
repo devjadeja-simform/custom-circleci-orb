@@ -21,7 +21,7 @@ steps:
       condition: << parameters.save_artifacts >>
       steps:
         - run:
-            name: Package
+            name: Packaging
             command: |
               if [[ -d "dist/" ]]; then zip -r ~/project/dist.zip dist/ ; fi
               if [[ -d "build/" ]]; then zip -r ~/project/build.zip dist/ ; fi
