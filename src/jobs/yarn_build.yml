@@ -36,4 +36,7 @@ steps:
         - build/*
   - store_artifacts:
       path: ~/project
-      destination: "*.zip"
+      destination: dist.zip
+  - store_artifacts:
+      path: ~/project
+      destination: build.zip
