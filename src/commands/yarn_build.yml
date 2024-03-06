@@ -12,26 +12,19 @@ parameters:
     description: Whether or not to store the zipped distributable build as a job artifact.
 
 steps:
-  - attach_workspace:
-      at: ~/project
   - run:
       name: Building
       command: |
         cd "$prj_path"
         yarn build
-  - run:
-      name: Package
-      command: |
-        if [[ -d "dist/" ]]; then zip -r ~/project/dist.zip dist/ ; fi
-        if [[ -d "build/" ]]; then zip -r ~/project/build.zip dist/ ; fi
-  - persist_to_workspace:
-      root: ~/project/<< parameters.prj_path >>/
-      paths:
-        - dist/*
-        - build/*
   - when:
       condition: << parameters.save_artifacts >>
       steps:
+        - run:
+            name: Package
+            command: |
+              if [[ -d "dist/" ]]; then zip -r ~/project/dist.zip dist/ ; fi
+              if [[ -d "build/" ]]; then zip -r ~/project/build.zip dist/ ; fi
         - store_artifacts:
             path: ~/project/dist.zip
             destination: dist.zip

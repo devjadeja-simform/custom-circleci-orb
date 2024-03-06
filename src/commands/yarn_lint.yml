@@ -8,8 +8,6 @@ parameters:
     description: Project path where 'package.json' lies.
 
 steps:
-  - attach_workspace:
-      at: ~/project
   - run:
       name: Linting
       command: |

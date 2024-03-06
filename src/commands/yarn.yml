@@ -16,9 +16,6 @@ parameters:
 
 
 steps:
-  # - checkout
-  - attach_workspace:
-      at: ~/project
   - run:
       name: Install
       command: |
@@ -27,7 +24,3 @@ steps:
   - run:
       name: yarn << parameters.script_command >>
       command: yarn << parameters.script_command >>
-  - persist_to_workspace:
-      root: ~/project
-      paths:
-        - << parameters.prj_path >>/node_modules

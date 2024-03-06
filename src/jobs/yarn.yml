@@ -48,3 +48,7 @@ steps:
       steps:
         - yarn_build:
             save_artifacts: true
+  - persist_to_workspace:
+      root: ~/project
+      paths:
+        - "*"

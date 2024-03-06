@@ -9,15 +9,8 @@ parameters:
       Project path where 'package.json' lies.
 
 steps:
-  # - checkout
-  - attach_workspace:
-      at: ~/project
   - run:
       name: Installing dependencies
       command: |
         cd "$prj_path"
         if [[ ! -d node_modules ]]; then yarn install; fi
-  - persist_to_workspace:
-      root: ~/project
-      paths:
-        - << parameters.prj_path >>/node_modules
