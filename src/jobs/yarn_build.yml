@@ -24,8 +24,18 @@ steps:
       command: |
         cd "$prj_path"
         yarn build
+  - run: 
+      name: Package
+      command: |
+        if [[ -d "dist/" ]]; then zip -r ~/project/dist.zip dist/ ; fi
+        if [[ -d "build/" ]]; then zip -r ~/project/build.zip dist/ ; fi
   - persist_to_workspace:
       root: ~/project/<< parameters.prj_path >>/
       paths:
         - dist/*
         - build/*
+  - store_artifacts:
+      path: ~/project
+      destination: 
+        - dist.zip
+        - build.zip
