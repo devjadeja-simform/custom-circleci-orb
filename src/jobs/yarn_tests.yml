@@ -33,7 +33,7 @@ steps:
       command: |
         if [[ -n "$prj_path" ]]; then cd "$prj_path" fi
         yarn test:e2e
-  
+
   - save_cache:
       key: dependency-cache-{{ checksum "package.json" }}
       paths:
