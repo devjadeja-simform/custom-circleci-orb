@@ -23,4 +23,3 @@ steps:
       command: |
         if [[ -n "$prj_path" ]]; then cd "$prj_path" fi
         yarn lint
-  
