@@ -39,6 +39,16 @@ We welcome [issues](https://github.com/devjadeja-simform/custom-circleci-orb/iss
     - This will push a new tag and trigger your publishing pipeline on CircleCI.
   
 
+
+### Publish dev version of orb
+
+To validate and publish a dev version of orb, execute following in `src/` directory in orb repository.
+
+```sh
+circleci orb pack ./ | circleci orb validate -
+
+circleci orb pack ./ | circleci orb publish - NAMESPACE/ORB_NAME@dev:alpha
+```
 ### Contributors
 <a href="https://github.com/devjadeja-simform/custom-circleci-orb/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=devjadeja-simform/custom-circleci-orb" />
