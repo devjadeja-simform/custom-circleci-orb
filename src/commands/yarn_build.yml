@@ -15,7 +15,7 @@ steps:
   - run:
       name: Building
       command: |
-        cd "$prj_path"
+        cd "<< parameters.prj_path >>"
         yarn build
   - when:
       condition: << parameters.save_artifacts >>

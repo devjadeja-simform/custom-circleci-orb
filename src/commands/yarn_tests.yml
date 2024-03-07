@@ -11,5 +11,5 @@ steps:
   - run:
       name: Unit Tests
       command: |
-        cd "$prj_path"
+        cd "<< parameters.prj_path >>"
         yarn test:unit

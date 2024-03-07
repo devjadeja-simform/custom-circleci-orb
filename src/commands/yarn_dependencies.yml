@@ -12,5 +12,5 @@ steps:
   - run:
       name: Installing dependencies
       command: |
-        cd "$prj_path"
+        cd "<< parameters.prj_path >>"
         if [[ ! -d node_modules ]]; then yarn install; fi

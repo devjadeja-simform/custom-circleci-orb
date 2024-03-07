@@ -19,5 +19,5 @@ steps:
   - run:
       name: yarn << parameters.script_command >>
       command: |
-        cd "$prj_path"
+        cd "<< parameters.prj_path >>"
         yarn << parameters.script_command >>

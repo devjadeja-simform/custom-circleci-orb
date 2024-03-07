@@ -11,5 +11,5 @@ steps:
   - run:
       name: Linting
       command: |
-        cd "$prj_path"
+        cd "<< parameters.prj_path >>"
         yarn lint
