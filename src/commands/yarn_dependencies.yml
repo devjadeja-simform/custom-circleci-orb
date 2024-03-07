@@ -10,13 +10,13 @@ parameters:
 
 steps:
   - restore_cache:
-      key: dependency-cache-{{ checksum "<< parameters.prj_path >>/yarn.lock" }}
+      key: dependency-cache-{{ checksum "<< parameters.prj_path >>yarn.lock" }}
   - run:
       name: Installing dependencies
       command: |
         cd "<< parameters.prj_path >>"
         if [[ ! -d node_modules ]]; then yarn install --frozen-lockfile; fi
   - save_cache:
-      key: dependency-cache-{{ checksum "<< parameters.prj_path >>/yarn.lock" }}
+      key: dependency-cache-{{ checksum "<< parameters.prj_path >>yarn.lock" }}
       paths:
-        - << parameters.prj_path >>/node_modules
+        - << parameters.prj_path >>node_modules
