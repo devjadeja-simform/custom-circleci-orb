@@ -37,16 +37,20 @@ steps:
   - checkout
   - attach_workspace:
       at: ~/project
-  - yarn_dependencies
-  - yarn_lint
+  - yarn_dependencies:
+      prj_path: << parameters.prj_path >>
+  - yarn_lint:
+      prj_path: << parameters.prj_path >>
   - when:
       condition: << parameters.run_tests >>
       steps:
-        - yarn_tests
+        - yarn_tests:
+            prj_path: << parameters.prj_path >>
   - when:
       condition: << parameters.create_distributable_build >>
       steps:
         - yarn_build:
+            prj_path: << parameters.prj_path >>
             save_artifacts: true
   - persist_to_workspace:
       root: ~/project
