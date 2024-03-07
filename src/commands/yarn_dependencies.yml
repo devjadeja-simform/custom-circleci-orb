@@ -7,6 +7,8 @@ parameters:
     default: "./"
     description: |
       Project path where 'package.json' lies.
+      The value must have '/' at the end.
+      i.e.: node_project/
 
 steps:
   - restore_cache:
