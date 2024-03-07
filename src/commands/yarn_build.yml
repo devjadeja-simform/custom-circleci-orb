@@ -23,6 +23,7 @@ steps:
         - run:
             name: Packaging
             command: |
+              cd "<< parameters.prj_path >>"
               if [[ -d "dist/" ]]; then zip -r ~/project/dist.zip dist/ ; fi
               if [[ -d "build/" ]]; then zip -r ~/project/build.zip dist/ ; fi
         - store_artifacts:
