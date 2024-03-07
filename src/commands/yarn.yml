@@ -17,10 +17,7 @@ parameters:
 
 steps:
   - run:
-      name: Install
+      name: yarn << parameters.script_command >>
       command: |
         cd "$prj_path"
-        if [[ ! -d node_modules ]]; then yarn install; fi
-  - run:
-      name: yarn << parameters.script_command >>
-      command: yarn << parameters.script_command >>
+        yarn << parameters.script_command >>
